@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Body Has a Clock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      color: #2c3e50;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #555;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+      background: #ffffff;
+      margin-top: 40px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .soft {
+      color: #555;
+    }
+
+    button {
+      background: #2c7be5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background: #1a5fc2;
+    }
+
+    input, select {
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 5px;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background: #eef5ff;
+      border-radius: 10px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Your Body Has a Clock</h1>
+  <p>
+    Your body follows a rhythm — even when you ignore it.
+    This website helps you understand that invisible system.
+  </p>
+
+  <!-- HERO IMAGE -->
+  <img src="hero.jpg" alt="Healthy lifestyle" class="hero-img">
+</header>
+
+<!-- 1 -->
+<section>
+  <h2>The Invisible Timer Inside You</h2>
+  <p>
+    Every single day, your body follows a hidden rhythm that decides when you feel
+    sleepy, awake, focused, hungry, or exhausted.
+  </p>
+  <p class="soft">
+    Modern life ignores this rhythm — but your body doesn’t.
+  </p>
+</section>
+
+<!-- 2 -->
+<section>
+  <h2>How Your Body Clock Works</h2>
+  <p>
+    Inside your brain, a tiny control center called the <b>suprachiasmatic nucleus (SCN)</b>
+    acts like a master timer.
+  </p>
+  <ul>
+    <li>Controls sleep & wake cycles</li>
+    <li>Regulates hormones</li>
+    <li>Affects focus and memory</li>
+  </ul>
+</section>
+
+<!-- 3 -->
+<section>
+  <h2>Teen Brain & Sleep</h2>
+  <p>
+    Teenagers are not lazy. Their biological clock is shifted later.
+  </p>
+  <ul>
+    <li>Melatonin releases later</li>
+    <li>Early school = sleep debt</li>
+    <li>Mood and focus are affected</li>
+  </ul>
+</section>
+
+<!-- 4 -->
+<section>
+  <h2>Why Am I Always Tired?</h2>
+
+  <div class="center">
+    <label>Bedtime</label>
+    <input type="time" id="bed">
+
+    <label>Wake time</label>
+    <input type="time" id="wake">
+
+    <button onclick="checkEnergy()">Check Energy</button>
+
+    <div id="energyResult" class="result" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <h2>Am I Okay? – Health Checker</h2>
+  <p class="center soft">
+    A quick self-check to understand your daily habits.
+  </p>
+
+  <div class="center">
+    <label>Sleep hours</label>
+    <input type="number" id="sleep">
+
+    <label>Water (liters)</label>
+    <input type="number" id="water">
+
+    <button onclick="healthCheck()">Check Health</button>
+
+    <div id="healthResult" class="result" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section>
+  <h2>IronQuest</h2>
+  <p class="center soft">
+    Build energy through healthy choices.
+  </p>
+
+  <div class="center">
+    <button onclick="energy+=10;update()">🥦 Eat</button>
+    <button onclick="energy+=10;update()">💧 Drink</button>
+    <button onclick="energy+=15;update()">🏃 Move</button>
+
+    <p><b>Energy:</b> <span id="ironEnergy">0</span>/100</p>
+  </div>
+</section>
+
+<footer>
+  Your body is already ticking.  
+  Learn to work with it — not against it.
+</footer>
+
+<script>
+  function checkEnergy() {
+    document.getElementById("energyResult").style.display = "block";
+    document.getElementById("energyResult").innerHTML =
+      "Your tiredness is linked to habits and timing — not weakness.";
+  }
+
+  function healthCheck() {
+    document.getElementById("healthResult").style.display = "block";
+    document.getElementById("healthResult").innerHTML =
+      "This is awareness only — not a medical diagnosis.";
+  }
+
+  let energy = 0;
+  function update() {
+    if (energy > 100) energy = 100;
+    document.getElementById("ironEnergy").innerText = energy;
+  }
+</script>
+
+</body>
+</html>
