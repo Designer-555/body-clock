@@ -2,64 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Your Body Clock</title>
+<title>Your Body Has a Clock</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+html{scroll-behavior:smooth;}
 body{
   margin:0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(120deg,#fdfbfb,#ebedee);
+  font-family:"Segoe UI",sans-serif;
+  background:linear-gradient(120deg,#fdfbfb,#ebedee);
   color:#2c3e50;
 }
 
-/* NAV */
 nav{
-  background:#ffffff;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  padding:12px;
-  text-align:center;
-  position:sticky;
+  position:fixed;
   top:0;
+  width:100%;
+  background:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+  padding:10px;
+  text-align:center;
+  z-index:1000;
 }
-nav button{
-  margin:6px;
+nav a{
+  margin:5px;
   padding:8px 14px;
-  border:none;
   border-radius:20px;
   background:#ecf0f1;
-  cursor:pointer;
+  text-decoration:none;
+  color:#2c3e50;
   font-weight:600;
 }
-nav button:hover{
-  background:#3498db;
-  color:white;
-}
+nav a:hover{background:#3498db;color:white;}
 
-/* PAGE */
 section{
-  display:none;
-  padding:40px 20px;
+  padding:100px 20px 60px;
   max-width:900px;
   margin:auto;
 }
-section.active{display:block;}
 
-h1,h2{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-/* CARD */
 .card{
   background:white;
   border-radius:18px;
   padding:25px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  margin-bottom:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  margin-bottom:30px;
 }
 
-/* FORM */
+h1,h2{text-align:center;}
+
 label{display:block;margin-top:15px;font-weight:600;}
 input,select{
   width:100%;
@@ -68,17 +59,17 @@ input,select{
   border-radius:10px;
   border:1px solid #ccc;
 }
-button.action{
+
+button{
   margin-top:20px;
   padding:10px 25px;
   border:none;
   border-radius:25px;
   background:#3498db;
   color:white;
-  font-size:1em;
   cursor:pointer;
 }
-button.action:hover{background:#2980b9;}
+button:hover{background:#2980b9;}
 
 .result{
   margin-top:20px;
@@ -90,15 +81,9 @@ button.action:hover{background:#2980b9;}
 .yellow{background:#fef9e7;color:#9a7d0a;}
 .red{background:#fdecea;color:#922b21;}
 
-/* GAME */
 .game button{
   margin:6px;
-  padding:10px 14px;
-  border:none;
-  border-radius:15px;
   background:#27ae60;
-  color:white;
-  cursor:pointer;
 }
 .game button:hover{background:#1e8449;}
 
@@ -107,14 +92,14 @@ button.action:hover{background:#2980b9;}
   background:#ddd;
   border-radius:15px;
   overflow:hidden;
-  margin:10px auto;
   max-width:350px;
+  margin:10px auto;
 }
 .energy-fill{
   height:100%;
   width:0%;
   background:#2ecc71;
-  transition:0.3s;
+  transition:.3s;
 }
 </style>
 </head>
@@ -122,37 +107,36 @@ button.action:hover{background:#2980b9;}
 <body>
 
 <nav>
-<button onclick="show('p1')">Home</button>
-<button onclick="show('p2')">Clock</button>
-<button onclick="show('p3')">Teen Sleep</button>
-<button onclick="show('p4')">Why Tired?</button>
-<button onclick="show('p5')">Am I OK?</button>
-<button onclick="show('p6')">IronQuest</button>
+<a href="#home">Home</a>
+<a href="#clock">Clock</a>
+<a href="#teen">Teen Sleep</a>
+<a href="#tired">Why Tired?</a>
+<a href="#health">Am I OK?</a>
+<a href="#iron">IronQuest</a>
 </nav>
 
-<section id="p1" class="active">
+<section id="home">
 <div class="card">
 <h1>Your Body Has a Clock</h1>
-<p>Your body has a clock — even when you ignore it.  
-It controls sleep, energy, focus, and mood.</p>
+<p>Your body follows an invisible rhythm controlling sleep, energy, and focus — even when you ignore it.</p>
 </div>
 </section>
 
-<section id="p2">
+<section id="clock">
 <div class="card">
 <h1>How Your Body Clock Works</h1>
-<p>Your circadian rhythm is a 24-hour biological cycle controlling sleep, hormones, and energy.</p>
+<p>Your circadian rhythm is a 24-hour biological cycle regulating hormones, alertness, and sleep.</p>
 </div>
 </section>
 
-<section id="p3">
+<section id="teen">
 <div class="card">
 <h1>Teen Brain & Sleep</h1>
-<p>Teenagers naturally feel sleepy later at night and tired in early mornings.</p>
+<p>Teenagers naturally feel sleepy later at night and tired in early mornings because their clock is shifted.</p>
 </div>
 </section>
 
-<section id="p4">
+<section id="tired">
 <div class="card">
 <h1>Why Am I Always Tired?</h1>
 
@@ -164,43 +148,43 @@ It controls sleep, energy, focus, and mood.</p>
 
 <label>Screens at night</label>
 <select id="screen">
-<option>Never</option>
-<option>Sometimes</option>
-<option>Often</option>
+<option value="never">Never</option>
+<option value="sometimes">Sometimes</option>
+<option value="often">Often</option>
 </select>
 
-<button class="action" onclick="energyCheck()">Check Energy</button>
+<button onclick="energyCheck()">Check Energy</button>
 <div id="energyResult"></div>
 </div>
 </section>
 
-<section id="p5">
+<section id="health">
 <div class="card">
 <h1>Am I OK? Health Checker</h1>
 
 <label>Sleep hours</label>
-<input type="number" id="sleep">
+<input type="number" id="sleepH">
 
 <label>Exercise days / week</label>
-<input type="number" id="ex">
+<input type="number" id="exercise">
 
 <label>Water (liters)</label>
 <input type="number" id="water" step="0.1">
 
-<button class="action" onclick="healthCheck()">Check Health</button>
+<button onclick="healthCheck()">Check Health</button>
 <div id="healthResult"></div>
 </div>
 </section>
 
-<section id="p6">
+<section id="iron">
 <div class="card">
 <h1>IronQuest</h1>
 
 <div class="game">
-<button onclick="add(10)">🥦 Eat</button>
-<button onclick="add(10)">💧 Drink</button>
-<button onclick="add(15)">🏃 Exercise</button>
-<button onclick="add(5)">😴 Nap</button>
+<button onclick="addEnergy(10)">🥦 Eat</button>
+<button onclick="addEnergy(10)">💧 Drink</button>
+<button onclick="addEnergy(15)">🏃 Exercise</button>
+<button onclick="addEnergy(5)">😴 Nap</button>
 </div>
 
 <div class="energy-bar">
@@ -211,32 +195,35 @@ It controls sleep, energy, focus, and mood.</p>
 </section>
 
 <script>
-function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
 function energyCheck(){
-  let b=bed.value.split(":")[0];
-  let w=wake.value.split(":")[0];
-  let s=screen.value;
-  let sleep=w-b; if(sleep<0)sleep+=24;
+  if(!bed.value || !wake.value){
+    alert("Please select both times");
+    return;
+  }
 
-  let e=100;
-  if(sleep<7)e-=20;
-  if(s=="Often")e-=20;
-  if(s=="Sometimes")e-=10;
+  let [bh,bm]=bed.value.split(":").map(Number);
+  let [wh,wm]=wake.value.split(":").map(Number);
+
+  let sleep=(wh+wm/60)-(bh+bm/60);
+  if(sleep<0) sleep+=24;
+
+  let energy=100;
+  if(sleep<7) energy-= (7-sleep)*10;
+  if(screen.value==="sometimes") energy-=10;
+  if(screen.value==="often") energy-=20;
+  energy=Math.max(0,Math.round(energy));
 
   let r=document.getElementById("energyResult");
-  r.className="result "+(e>=80?"green":e>=50?"yellow":"red");
-  r.innerHTML=`Sleep: ${sleep}h<br>Energy: ${e}/100`;
+  r.className="result "+(energy>=80?"green":energy>=50?"yellow":"red");
+  r.innerHTML=`Sleep: ${sleep.toFixed(1)} h<br>Energy: ${energy}/100`;
 }
 
 function healthCheck(){
   let score=50;
-  if(sleep.value>=8)score+=20;
-  if(ex.value>=3)score+=15;
-  if(water.value>=2)score+=15;
+  if(sleepH.value>=8) score+=20;
+  if(exercise.value>=3) score+=15;
+  if(water.value>=2) score+=15;
+  score=Math.min(100,score);
 
   let r=document.getElementById("healthResult");
   r.className="result "+(score>=80?"green":score>=50?"yellow":"red");
@@ -244,9 +231,10 @@ function healthCheck(){
 }
 
 let energy=0;
-function add(x){
-  energy+=x;if(energy>100)energy=100;
-  points.innerText=energy;
+function addEnergy(x){
+  energy+=x;
+  if(energy>100) energy=100;
+  points.textContent=energy;
   bar.style.width=energy+"%";
 }
 </script>
