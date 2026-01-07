@@ -36,7 +36,7 @@ nav a{
 nav a:hover{background:#3498db;color:white;}
 
 section{
-  padding:100px 20px 60px;
+  padding:110px 20px 60px;
   max-width:900px;
   margin:auto;
 }
@@ -44,12 +44,19 @@ section{
 .card{
   background:white;
   border-radius:18px;
-  padding:25px;
+  padding:30px;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
-  margin-bottom:30px;
+  margin-bottom:35px;
 }
 
 h1,h2{text-align:center;}
+
+.hero{
+  width:100%;
+  border-radius:18px;
+  margin:25px 0;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
 
 label{display:block;margin-top:15px;font-weight:600;}
 input,select{
@@ -80,12 +87,6 @@ button:hover{background:#2980b9;}
 .green{background:#eafaf1;color:#1e8449;}
 .yellow{background:#fef9e7;color:#9a7d0a;}
 .red{background:#fdecea;color:#922b21;}
-
-.game button{
-  margin:6px;
-  background:#27ae60;
-}
-.game button:hover{background:#1e8449;}
 
 .energy-bar{
   height:22px;
@@ -118,6 +119,9 @@ button:hover{background:#2980b9;}
 <section id="home">
 <div class="card">
 <h1>Your Body Has a Clock</h1>
+
+<img src="hero.jpg" alt="Biological Clock" class="hero">
+
 <p>Your body follows an invisible rhythm controlling sleep, energy, and focus — even when you ignore it.</p>
 </div>
 </section>
@@ -132,7 +136,7 @@ button:hover{background:#2980b9;}
 <section id="teen">
 <div class="card">
 <h1>Teen Brain & Sleep</h1>
-<p>Teenagers naturally feel sleepy later at night and tired in early mornings because their clock is shifted.</p>
+<p>Teenagers are not lazy — their biological clocks are shifted later, causing morning tiredness.</p>
 </div>
 </section>
 
@@ -180,12 +184,10 @@ button:hover{background:#2980b9;}
 <div class="card">
 <h1>IronQuest</h1>
 
-<div class="game">
 <button onclick="addEnergy(10)">🥦 Eat</button>
 <button onclick="addEnergy(10)">💧 Drink</button>
 <button onclick="addEnergy(15)">🏃 Exercise</button>
 <button onclick="addEnergy(5)">😴 Nap</button>
-</div>
 
 <div class="energy-bar">
 <div id="bar" class="energy-fill"></div>
@@ -207,11 +209,16 @@ function energyCheck(){
   let sleep=(wh+wm/60)-(bh+bm/60);
   if(sleep<0) sleep+=24;
 
-  let energy=100;
-  if(sleep<7) energy-= (7-sleep)*10;
-  if(screen.value==="sometimes") energy-=10;
-  if(screen.value==="often") energy-=20;
-  energy=Math.max(0,Math.round(energy));
+  // Sleep = 70%
+  let sleepScore=Math.min((sleep/8)*70,70);
+
+  // Screen = 30%
+  let screenScore=0;
+  if(screen.value==="never") screenScore=30;
+  if(screen.value==="sometimes") screenScore=20;
+  if(screen.value==="often") screenScore=0;
+
+  let energy=Math.round(sleepScore+screenScore);
 
   let r=document.getElementById("energyResult");
   r.className="result "+(energy>=80?"green":energy>=50?"yellow":"red");
