@@ -1,297 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Body Has a Clock</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Your Body Clock</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f4f6f8;
-      color: #2c3e50;
-      line-height: 1.7;
-    }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f8;
+  color:#333;
+}
+nav{
+  background:#2c3e50;
+  padding:10px;
+  text-align:center;
+}
+nav button{
+  margin:5px;
+  padding:8px 14px;
+  border:none;
+  background:#3498db;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+nav button:hover{background:#2980b9;}
 
-    header {
-      background: #ffffff;
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
+section{
+  display:none;
+  padding:25px;
+  max-width:900px;
+  margin:auto;
+}
+section.active{display:block;}
 
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.1em;
-      color: #555;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .hero-img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      margin-top: 30px;
-      border-radius: 12px;
-    }
-
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-      background: #ffffff;
-      margin-top: 40px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .soft {
-      color: #555;
-    }
-
-    button {
-      background: #2c7be5;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    button:hover {
-      background: #1a5fc2;
-    }
-
-    input, select {
-      padding: 8px;
-      width: 100%;
-      max-width: 300px;
-      margin-top: 5px;
-    }
-
-    .result {
-      margin-top: 20px;
-      padding: 20px;
-      background: #eef5ff;
-      border-radius: 10px;
-    }
-
-    .center {
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #777;
-    }
-  </style>
+h1,h2{text-align:center;color:#2c3e50;}
+.result{
+  margin-top:20px;
+  padding:15px;
+  background:#eafaf1;
+  border-radius:10px;
+}
+.game button{
+  margin:5px;
+  padding:10px;
+  border:none;
+  background:#27ae60;
+  color:white;
+  border-radius:5px;
+}
+.energy-bar{
+  width:100%;
+  max-width:400px;
+  background:#ddd;
+  height:25px;
+  margin:10px auto;
+  border-radius:10px;
+}
+.energy-fill{
+  height:100%;
+  width:0%;
+  background:#2ecc71;
+  border-radius:10px;
+}
+input,select{
+  padding:5px;
+  margin:5px 0;
+  width:250px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Your Body Has a Clock</h1>
-  <p>
-    Your body follows a rhythm — even when you ignore it.
-    This website helps you understand that invisible system.
-  </p>
+<nav>
+<button onclick="showPage('p1')">Home</button>
+<button onclick="showPage('p2')">How Clock Works</button>
+<button onclick="showPage('p3')">Teen Sleep</button>
+<button onclick="showPage('p4')">Why Am I Tired?</button>
+<button onclick="showPage('p5')">Am I OK?</button>
+<button onclick="showPage('p6')">IronQuest</button>
+</nav>
 
-  <!-- HERO IMAGE -->
-  <img src="hero.jpg" alt="Healthy lifestyle" class="hero-img">
-</header>
-
-<!-- 1 -->
-<section>
-  <h2>The Invisible Timer Inside You</h2>
-  <p>
-    Every single day, your body follows a hidden rhythm that decides when you feel
-    sleepy, awake, focused, hungry, or exhausted.
-  </p>
-  <p class="soft">
-    Modern life ignores this rhythm — but your body doesn’t.
-  </p>
+<section id="p1" class="active">
+<h1>Your Body Has a Clock</h1>
+<p>Your body follows a hidden rhythm that controls sleep, energy and focus.</p>
+<p>This website helps you understand that invisible biological clock.</p>
 </section>
 
-<!-- 2 -->
-<section>
-  <h2>How Your Body Clock Works</h2>
-  <p>
-    Inside your brain, a tiny control center called the <b>suprachiasmatic nucleus (SCN)</b>
-    acts like a master timer.
-  </p>
-  <ul>
-    <li>Controls sleep & wake cycles</li>
-    <li>Regulates hormones</li>
-    <li>Affects focus and memory</li>
-  </ul>
+<section id="p2">
+<h1>How Your Body Clock Works</h1>
+<p>Your circadian rhythm controls sleep, hormones, attention and energy.</p>
 </section>
 
-<!-- 3 -->
-<section>
-  <h2>Teen Brain & Sleep</h2>
-  <p>
-    Teenagers are not lazy. Their biological clock is shifted later.
-  </p>
-  <ul>
-    <li>Melatonin releases later</li>
-    <li>Early school = sleep debt</li>
-    <li>Mood and focus are affected</li>
-  </ul>
+<section id="p3">
+<h1>Teen Brain & Sleep</h1>
+<p>Teenagers naturally sleep later. Early mornings clash with biology.</p>
 </section>
 
-<!-- 4 -->
-<section>
-  <h2>Why Am I Always Tired?</h2>
+<section id="p4">
+<h1>Why Am I Always Tired?</h1>
 
-  <div class="center">
-    <label>Bedtime</label>
-    <input type="time" id="bed">
+<label>Bedtime</label>
+<input type="time" id="bedtime">
 
-    <label>Wake time</label>
-    <input type="time" id="wake">
+<label>Wake time</label>
+<input type="time" id="waketime">
 
-    <button onclick="checkEnergy()">Check Energy</button>
+<label>Screens at night?</label>
+<select id="screens">
+<option value="never">Never</option>
+<option value="sometimes">Sometimes</option>
+<option value="often">Often</option>
+</select>
 
-    <div id="energyResult" class="result" style="display:none;"></div>
-  </div>
+<button onclick="checkEnergy()">Check Energy</button>
+<div id="energyResult" class="result" style="display:none;"></div>
 </section>
 
-<!-- 5 -->
-<section>
-  <h2>Am I Okay? – Health Checker</h2>
-  <p class="center soft">
-    A quick self-check to understand your daily habits.
-  </p>
+<section id="p5">
+<h1>Am I OK? Health Checker</h1>
 
-  <div class="center">
-    <label>Sleep hours</label>
-    <input type="number" id="sleep">
+<label>Sleep hours</label>
+<input type="number" id="sleep">
 
-    <label>Water (liters)</label>
-    <input type="number" id="water">
+<label>Exercise days/week</label>
+<input type="number" id="exercise">
 
-    <button onclick="healthCheck()">Check Health</button>
+<label>Water (liters)</label>
+<input type="number" id="water" step="0.1">
 
-    <div id="healthResult" class="result" style="display:none;"></div>
-  </div>
+<button onclick="checkHealth()">Check Health</button>
+<div id="healthResult" class="result" style="display:none;"></div>
 </section>
 
-<!-- 6 -->
-<section>
-  <h2>IronQuest</h2>
-  <p class="center soft">
-    Build energy through healthy choices.
-  </p>
+<section id="p6">
+<h1>IronQuest</h1>
 
-  <div class="center">
-    <button onclick="energy+=10;update()">🥦 Eat</button>
-    <button onclick="energy+=10;update()">💧 Drink</button>
-    <button onclick="energy+=15;update()">🏃 Move</button>
+<div class="game">
+<button onclick="gain(10)">🥦 Eat</button>
+<button onclick="gain(10)">💧 Drink</button>
+<button onclick="gain(15)">🏃 Exercise</button>
+<button onclick="gain(5)">😴 Nap</button>
+</div>
 
-    <p><b>Energy:</b> <span id="ironEnergy">0</span>/100</p>
-  </div>
+<div class="energy-bar">
+<div id="bar" class="energy-fill"></div>
+</div>
+<p style="text-align:center;">Energy: <span id="points">0</span>/100</p>
 </section>
-
-<footer>
-  Your body is already ticking.  
-  Learn to work with it — not against it.
-</footer>
 
 <script>
-// -------- WHY AM I TIRED --------
-function checkEnergy() {
-  const bed = document.getElementById("bed").value;
-  const wake = document.getElementById("wake").value;
-  const result = document.getElementById("energyResult");
-
-  if (!bed || !wake) {
-    result.style.display = "block";
-    result.style.background = "#ffeaea";
-    result.innerHTML = "Please enter both bedtime and wake-up time.";
-    return;
-  }
-
-  const bedHour = parseInt(bed.split(":")[0]);
-  const wakeHour = parseInt(wake.split(":")[0]);
-
-  let sleepHours =
-    wakeHour >= bedHour
-      ? wakeHour - bedHour
-      : (24 - bedHour) + wakeHour;
-
-  result.style.display = "block";
-
-  if (sleepHours >= 8) {
-    result.style.background = "#e6f7ec";
-    result.innerHTML = `🟢 You sleep about <b>${sleepHours} hours</b>. Good energy level.`;
-  } else if (sleepHours >= 6) {
-    result.style.background = "#fff6e0";
-    result.innerHTML = `🟡 You sleep about <b>${sleepHours} hours</b>. You may feel tired.`;
-  } else {
-    result.style.background = "#ffeaea";
-    result.innerHTML = `🔴 Only <b>${sleepHours} hours</b> of sleep. High fatigue risk.`;
-  }
+function showPage(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-// -------- AM I OK? HEALTH CHECKER --------
-function healthCheck() {
-  const sleep = document.getElementById("sleep").value;
-  const water = document.getElementById("water").value;
-  const result = document.getElementById("healthResult");
+/* WHY AM I TIRED */
+function checkEnergy(){
+  let b=document.getElementById("bedtime").value;
+  let w=document.getElementById("waketime").value;
+  let s=document.getElementById("screens").value;
 
-  if (!sleep || !water) {
-    result.style.display = "block";
-    result.style.background = "#ffeaea";
-    result.innerHTML = "Please fill in all fields.";
-    return;
-  }
+  if(!b||!w){alert("Fill times");return;}
 
-  let score = 0;
-  if (sleep >= 8) score += 50;
-  else if (sleep >= 6) score += 30;
+  let bh=b.split(":")[0], wh=w.split(":")[0];
+  let sleep=wh-bh; if(sleep<0) sleep+=24;
 
-  if (water >= 2) score += 50;
-  else if (water >= 1) score += 30;
+  let energy=100;
+  if(sleep<7) energy-=20;
+  if(s=="often") energy-=20;
+  if(s=="sometimes") energy-=10;
 
-  result.style.display = "block";
+  let msg=energy>=80?"🟢 Good energy":
+          energy>=50?"🟡 Medium energy":"🔴 Low energy";
 
-  if (score >= 80) {
-    result.style.background = "#e6f7ec";
-    result.innerHTML = "🟢 You are doing great!";
-  } else if (score >= 50) {
-    result.style.background = "#fff6e0";
-    result.innerHTML = "🟡 You are okay, but can improve.";
-  } else {
-    result.style.background = "#ffeaea";
-    result.innerHTML = "🔴 Your habits need improvement.";
-  }
+  let r=document.getElementById("energyResult");
+  r.style.display="block";
+  r.innerHTML=`Sleep: ${sleep}h<br>Energy: ${energy}/100<br>${msg}`;
 }
 
-// -------- IRONQUEST GAME --------
-let energy = 0;
+/* HEALTH CHECK */
+function checkHealth(){
+  let score=50;
+  if(sleep.value>=8)score+=20;
+  if(exercise.value>=3)score+=15;
+  if(water.value>=2)score+=15;
 
-function update() {
-  energy += 10;
-  if (energy > 100) energy = 100;
-  document.getElementById("ironEnergy").innerText = energy;
+  let msg=score>=80?"🟢 Healthy":
+          score>=50?"🟡 Can improve":"🔴 Needs attention";
+
+  let r=document.getElementById("healthResult");
+  r.style.display="block";
+  r.innerHTML=`Score: ${score}/100<br>${msg}`;
+}
+
+/* IRONQUEST */
+let energy=0;
+function gain(x){
+  energy+=x; if(energy>100)energy=100;
+  points.innerText=energy;
+  bar.style.width=energy+"%";
 }
 </script>
 
-
+</body>
+</html>
