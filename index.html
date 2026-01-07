@@ -7,68 +7,114 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
   margin:0;
-  background:#f4f6f8;
-  color:#333;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(120deg,#fdfbfb,#ebedee);
+  color:#2c3e50;
 }
+
+/* NAV */
 nav{
-  background:#2c3e50;
-  padding:10px;
+  background:#ffffff;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  padding:12px;
   text-align:center;
+  position:sticky;
+  top:0;
 }
 nav button{
-  margin:5px;
+  margin:6px;
   padding:8px 14px;
   border:none;
+  border-radius:20px;
+  background:#ecf0f1;
+  cursor:pointer;
+  font-weight:600;
+}
+nav button:hover{
   background:#3498db;
   color:white;
-  cursor:pointer;
-  border-radius:5px;
 }
-nav button:hover{background:#2980b9;}
 
+/* PAGE */
 section{
   display:none;
-  padding:25px;
+  padding:40px 20px;
   max-width:900px;
   margin:auto;
 }
 section.active{display:block;}
 
-h1,h2{text-align:center;color:#2c3e50;}
+h1,h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  margin-bottom:25px;
+}
+
+/* FORM */
+label{display:block;margin-top:15px;font-weight:600;}
+input,select{
+  width:100%;
+  max-width:280px;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+button.action{
+  margin-top:20px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
+  background:#3498db;
+  color:white;
+  font-size:1em;
+  cursor:pointer;
+}
+button.action:hover{background:#2980b9;}
+
 .result{
   margin-top:20px;
-  padding:15px;
-  background:#eafaf1;
-  border-radius:10px;
+  padding:18px;
+  border-radius:15px;
+  font-weight:600;
 }
+.green{background:#eafaf1;color:#1e8449;}
+.yellow{background:#fef9e7;color:#9a7d0a;}
+.red{background:#fdecea;color:#922b21;}
+
+/* GAME */
 .game button{
-  margin:5px;
-  padding:10px;
+  margin:6px;
+  padding:10px 14px;
   border:none;
+  border-radius:15px;
   background:#27ae60;
   color:white;
-  border-radius:5px;
+  cursor:pointer;
 }
+.game button:hover{background:#1e8449;}
+
 .energy-bar{
-  width:100%;
-  max-width:400px;
+  height:22px;
   background:#ddd;
-  height:25px;
+  border-radius:15px;
+  overflow:hidden;
   margin:10px auto;
-  border-radius:10px;
+  max-width:350px;
 }
 .energy-fill{
   height:100%;
   width:0%;
   background:#2ecc71;
-  border-radius:10px;
-}
-input,select{
-  padding:5px;
-  margin:5px 0;
-  width:250px;
+  transition:0.3s;
 }
 </style>
 </head>
@@ -76,131 +122,130 @@ input,select{
 <body>
 
 <nav>
-<button onclick="showPage('p1')">Home</button>
-<button onclick="showPage('p2')">How Clock Works</button>
-<button onclick="showPage('p3')">Teen Sleep</button>
-<button onclick="showPage('p4')">Why Am I Tired?</button>
-<button onclick="showPage('p5')">Am I OK?</button>
-<button onclick="showPage('p6')">IronQuest</button>
+<button onclick="show('p1')">Home</button>
+<button onclick="show('p2')">Clock</button>
+<button onclick="show('p3')">Teen Sleep</button>
+<button onclick="show('p4')">Why Tired?</button>
+<button onclick="show('p5')">Am I OK?</button>
+<button onclick="show('p6')">IronQuest</button>
 </nav>
 
 <section id="p1" class="active">
+<div class="card">
 <h1>Your Body Has a Clock</h1>
-<p>Your body follows a hidden rhythm that controls sleep, energy and focus.</p>
-<p>This website helps you understand that invisible biological clock.</p>
+<p>Your body has a clock — even when you ignore it.  
+It controls sleep, energy, focus, and mood.</p>
+</div>
 </section>
 
 <section id="p2">
+<div class="card">
 <h1>How Your Body Clock Works</h1>
-<p>Your circadian rhythm controls sleep, hormones, attention and energy.</p>
+<p>Your circadian rhythm is a 24-hour biological cycle controlling sleep, hormones, and energy.</p>
+</div>
 </section>
 
 <section id="p3">
+<div class="card">
 <h1>Teen Brain & Sleep</h1>
-<p>Teenagers naturally sleep later. Early mornings clash with biology.</p>
+<p>Teenagers naturally feel sleepy later at night and tired in early mornings.</p>
+</div>
 </section>
 
 <section id="p4">
+<div class="card">
 <h1>Why Am I Always Tired?</h1>
 
 <label>Bedtime</label>
-<input type="time" id="bedtime">
+<input type="time" id="bed">
 
 <label>Wake time</label>
-<input type="time" id="waketime">
+<input type="time" id="wake">
 
-<label>Screens at night?</label>
-<select id="screens">
-<option value="never">Never</option>
-<option value="sometimes">Sometimes</option>
-<option value="often">Often</option>
+<label>Screens at night</label>
+<select id="screen">
+<option>Never</option>
+<option>Sometimes</option>
+<option>Often</option>
 </select>
 
-<button onclick="checkEnergy()">Check Energy</button>
-<div id="energyResult" class="result" style="display:none;"></div>
+<button class="action" onclick="energyCheck()">Check Energy</button>
+<div id="energyResult"></div>
+</div>
 </section>
 
 <section id="p5">
+<div class="card">
 <h1>Am I OK? Health Checker</h1>
 
 <label>Sleep hours</label>
 <input type="number" id="sleep">
 
-<label>Exercise days/week</label>
-<input type="number" id="exercise">
+<label>Exercise days / week</label>
+<input type="number" id="ex">
 
 <label>Water (liters)</label>
 <input type="number" id="water" step="0.1">
 
-<button onclick="checkHealth()">Check Health</button>
-<div id="healthResult" class="result" style="display:none;"></div>
+<button class="action" onclick="healthCheck()">Check Health</button>
+<div id="healthResult"></div>
+</div>
 </section>
 
 <section id="p6">
+<div class="card">
 <h1>IronQuest</h1>
 
 <div class="game">
-<button onclick="gain(10)">🥦 Eat</button>
-<button onclick="gain(10)">💧 Drink</button>
-<button onclick="gain(15)">🏃 Exercise</button>
-<button onclick="gain(5)">😴 Nap</button>
+<button onclick="add(10)">🥦 Eat</button>
+<button onclick="add(10)">💧 Drink</button>
+<button onclick="add(15)">🏃 Exercise</button>
+<button onclick="add(5)">😴 Nap</button>
 </div>
 
 <div class="energy-bar">
 <div id="bar" class="energy-fill"></div>
 </div>
-<p style="text-align:center;">Energy: <span id="points">0</span>/100</p>
+<p style="text-align:center">Energy: <span id="points">0</span>/100</p>
+</div>
 </section>
 
 <script>
-function showPage(id){
+function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-/* WHY AM I TIRED */
-function checkEnergy(){
-  let b=document.getElementById("bedtime").value;
-  let w=document.getElementById("waketime").value;
-  let s=document.getElementById("screens").value;
+function energyCheck(){
+  let b=bed.value.split(":")[0];
+  let w=wake.value.split(":")[0];
+  let s=screen.value;
+  let sleep=w-b; if(sleep<0)sleep+=24;
 
-  if(!b||!w){alert("Fill times");return;}
-
-  let bh=b.split(":")[0], wh=w.split(":")[0];
-  let sleep=wh-bh; if(sleep<0) sleep+=24;
-
-  let energy=100;
-  if(sleep<7) energy-=20;
-  if(s=="often") energy-=20;
-  if(s=="sometimes") energy-=10;
-
-  let msg=energy>=80?"🟢 Good energy":
-          energy>=50?"🟡 Medium energy":"🔴 Low energy";
+  let e=100;
+  if(sleep<7)e-=20;
+  if(s=="Often")e-=20;
+  if(s=="Sometimes")e-=10;
 
   let r=document.getElementById("energyResult");
-  r.style.display="block";
-  r.innerHTML=`Sleep: ${sleep}h<br>Energy: ${energy}/100<br>${msg}`;
+  r.className="result "+(e>=80?"green":e>=50?"yellow":"red");
+  r.innerHTML=`Sleep: ${sleep}h<br>Energy: ${e}/100`;
 }
 
-/* HEALTH CHECK */
-function checkHealth(){
+function healthCheck(){
   let score=50;
   if(sleep.value>=8)score+=20;
-  if(exercise.value>=3)score+=15;
+  if(ex.value>=3)score+=15;
   if(water.value>=2)score+=15;
 
-  let msg=score>=80?"🟢 Healthy":
-          score>=50?"🟡 Can improve":"🔴 Needs attention";
-
   let r=document.getElementById("healthResult");
-  r.style.display="block";
-  r.innerHTML=`Score: ${score}/100<br>${msg}`;
+  r.className="result "+(score>=80?"green":score>=50?"yellow":"red");
+  r.innerHTML=`Health score: ${score}/100`;
 }
 
-/* IRONQUEST */
 let energy=0;
-function gain(x){
-  energy+=x; if(energy>100)energy=100;
+function add(x){
+  energy+=x;if(energy>100)energy=100;
   points.innerText=energy;
   bar.style.width=energy+"%";
 }
